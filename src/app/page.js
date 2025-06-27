@@ -1,95 +1,72 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+  'use client';
+
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.js</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <>
+      <Header />
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
+      <main>
+        <section className="hero">
+          <div className="container hero-content">
+            <h1 className="hero-title">Intelligent Solutions for Real-World Challenges</h1>
+            <p className="hero-subtitle">We develop cutting-edge AI, IoT, and embedded systems to transform your business.</p>
+            <div>
+              <a href="/contact" className="button">Request Consultation</a>
+              <a href="/services" className="button secondary" style={{ marginLeft: '20px' }}>Our Services</a>
+            </div>
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="container">
+            <h2 className="section-title">Our Solutions</h2>
+            <div className="grid">
+              <div className="card">
+                <h3>Custom AI Applications</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+              </div>
+              <div className="card">
+                <h3>IoT Systems</h3>
+                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+              </div>
+              <div className="card">
+                <h3>Embedded Systems</h3>
+                <p>Sit amet consectetur adipiscing elit duis tristique sollicitudin nibh sit. Ornare arcu dui vivamus arcu felis bibendum ut tristique et.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="section" style={{ background: 'var(--light-gray)' }}>
+          <div className="container">
+            <h2 className="section-title">Industries We Serve</h2>
+            <div className="grid">
+              <div className="card">
+                <h3>Manufacturing</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras porttitor metus justo, ut fringilla felis euismod a.</p>
+              </div>
+              <div className="card">
+                <h3>Agriculture</h3>
+                <p>Nullam sit amet nisi condimentum erat iaculis auctor. Nulla pellentesque dignissim enim sit amet venenatis urna cursus eget nunc scelerisque.</p>
+              </div>
+              <div className="card">
+                <h3>Mining</h3>
+                <p>Fusce ut placerat orci nulla pellentesque dignissim. Praesent vitae metus at neque cursus finibus. Duis mollis, est non commodo luctus.</p>
+              </div>
+              <div className="card">
+                <h3>Energy & Utilities</h3>
+                <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec velit neque, auctor sit amet aliquam vel.</p>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+
+      <Footer />
+    </>
+  )
 }
+
