@@ -4,7 +4,7 @@ export default function Header() {
   return (
     <header className="header">
       <div className="container header-content">
-        <a href="/" className="logo">xxxxxx</a>
+        <a href="/" className="logo">Acunova</a>
         <nav>
           <button className="mobile-menu-button" aria-label="Toggle menu">☰</button>
           <ul className="nav-menu">

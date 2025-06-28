@@ -8,7 +8,7 @@ export default function About() {
       <main>
         <section className="hero">
           <div className="container hero-content">
-            <h1 className="hero-title">About xxxxxx</h1>
+            <h1 className="hero-title">About Acunova</h1>
             <p className="hero-subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
           </div>
         </section>

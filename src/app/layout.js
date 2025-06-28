@@ -12,8 +12,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "xxxxxx - Intelligent Systems & Solutions",
-  description: "xxxxxx develops intelligent systems using AI, electronics, IoT, embedded systems, and custom software development to solve real-world problems across industries.",
+  title: "Acunova - Intelligent Systems & Solutions",
+  description: "Acunova develops intelligent systems using AI, electronics, IoT, embedded systems, and custom software development to solve real-world problems across industries.",
   keywords: "AI solutions, IoT development, embedded systems, custom software, industrial automation",
 };
 
