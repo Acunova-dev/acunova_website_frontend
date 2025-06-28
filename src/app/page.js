@@ -14,8 +14,8 @@ export default function Home() {
             <h1 className="hero-title">Intelligent Solutions for Real-World Challenges</h1>
             <p className="hero-subtitle">We develop cutting-edge AI, IoT, and embedded systems to transform your business.</p>
             <div>
-              <a href="/contact" className="button">Request Consultation</a>
-              <a href="/services" className="button secondary" style={{ marginLeft: '20px' }}>Our Services</a>
+              <a href="/contact" className="button primary">Request Consultation</a>
+              <a href="/services" className="button outline" style={{ marginLeft: '20px' }}>Our Services</a>
             </div>
           </div>
         </section>

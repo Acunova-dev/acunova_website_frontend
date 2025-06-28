@@ -1,19 +1,46 @@
 'use client';
+import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export default function Header() {
+  const pathname = usePathname();
+
+  const isActive = (path) => {
+    if (path === '/' && pathname === '/') return 'nav-link active';
+    if (path !== '/' && pathname.startsWith(path)) return 'nav-link active';
+    return 'nav-link';
+  };
+
   return (
     <header className="header">
       <div className="container header-content">
-        <a href="/" className="logo">Acunova</a>
+        <Link href="/" className="logo">
+          <div className="logo-container">
+            <Image
+              src="/acunova_logo.jpg"
+              alt="Acunova Logo Symbol"
+              width={70}
+              height={70}
+              className="logo-symbol"
+            />
+            <Image
+              src="/acunova_logo_name.jpg"
+              alt="Acunova Logo Text"
+              width={130}
+              height={70}
+              className="logo-text"
+            />
+          </div>
+        </Link>
         <nav>
           <button className="mobile-menu-button" aria-label="Toggle menu">☰</button>
           <ul className="nav-menu">
-            <li><a href="/about" className="nav-link">About</a></li>
-            <li><a href="/services" className="nav-link">Services</a></li>
-            <li><a href="/technologies" className="nav-link">Technologies</a></li>
-            <li><a href="/industries" className="nav-link">Industries</a></li>
-            <li><a href="/blog" className="nav-link">Blog</a></li>
-            <li><a href="/contact" className="nav-link">Contact</a></li>
+            <li><Link href="/about" className={isActive('/about')}>About</Link></li>
+            <li><Link href="/services" className={isActive('/services')}>Services</Link></li>
+            <li><Link href="/technologies" className={isActive('/technologies')}>Technologies</Link></li>
+            <li><Link href="/blog" className={isActive('/blog')}>Blog</Link></li>
+            <li><Link href="/contact" className={isActive('/contact')}>Contact</Link></li>
           </ul>
         </nav>
       </div>
