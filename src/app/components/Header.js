@@ -2,9 +2,15 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useState } from 'react';
 
 export default function Header() {
   const pathname = usePathname();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   const isActive = (path) => {
     if (path === '/' && pathname === '/') return 'nav-link active';
@@ -34,13 +40,22 @@ export default function Header() {
           </div>
         </Link>
         <nav>
-          <button className="mobile-menu-button" aria-label="Toggle menu">☰</button>
-          <ul className="nav-menu">
-            <li><Link href="/about" className={isActive('/about')}>About</Link></li>
-            <li><Link href="/services" className={isActive('/services')}>Services</Link></li>
-            <li><Link href="/technologies" className={isActive('/technologies')}>Technologies</Link></li>
-            <li><Link href="/blog" className={isActive('/blog')}>Blog</Link></li>
-            <li><Link href="/contact" className={isActive('/contact')}>Contact</Link></li>
+          <button 
+            className="mobile-menu-button" 
+            aria-label="Toggle menu"
+            onClick={toggleMenu}
+            aria-expanded={isMenuOpen}
+          >
+            <span style={{ transform: isMenuOpen ? 'rotate(45deg)' : 'none' }}>
+              {isMenuOpen ? '✕' : '☰'}
+            </span>
+          </button>
+          <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
+            <li><Link href="/about" className={isActive('/about')} onClick={toggleMenu}>About</Link></li>
+            <li><Link href="/services" className={isActive('/services')} onClick={toggleMenu}>Services</Link></li>
+            <li><Link href="/technologies" className={isActive('/technologies')} onClick={toggleMenu}>Technologies</Link></li>
+            <li><Link href="/blog" className={isActive('/blog')} onClick={toggleMenu}>Blog</Link></li>
+            <li><Link href="/contact" className={isActive('/contact')} onClick={toggleMenu}>Contact</Link></li>
           </ul>
         </nav>
       </div>

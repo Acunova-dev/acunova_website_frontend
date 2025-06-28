@@ -74,6 +74,7 @@ body {
 .nav-menu {
   display: flex;
   gap: 30px;
+  list-style: none;
 }
 
 .nav-link {
@@ -133,7 +134,7 @@ body {
 }
 
 .hero-title {
-  font-size: 48px;
+  font-size: 44px;
   font-weight: bold;
   margin-bottom: 20px;
   color: white;
@@ -274,34 +275,51 @@ body {
 
 /* Mobile Menu */
 .mobile-menu-button {
+  position: relative;
+  width: 30px;
+  height: 30px;
   display: none;
-  font-size: 24px;
+  justify-content: center;
+  align-items: center;
   background: none;
   border: none;
   cursor: pointer;
   color: var(--text-color);
+  font-size: 24px;
+  transition: transform 0.3s ease;
 }
 
-/* Responsive Styles */
+.mobile-menu-button:hover {
+  color: var(--primary-color);
+}
+
 @media (max-width: 768px) {
   .mobile-menu-button {
-    display: block;
+    display: flex;
   }
 
   .nav-menu {
-    display: none;
     position: absolute;
+    visibility: hidden;
+    opacity: 0;
     top: var(--header-height);
     left: 0;
     width: 100%;
     background: white;
     padding: 20px;
+    list-style-type: none;
     flex-direction: column;
     gap: 20px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 999;
+    transform: translateY(-10px);
+    transition: all 0.3s ease-in-out;
   }
 
   .nav-menu.active {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
     display: flex;
   }
 
@@ -311,10 +329,12 @@ body {
 
   .hero-title {
     font-size: 36px;
+    line-height: 1.2;
   }
 
   .hero-subtitle {
     font-size: 20px;
+    line-height: 1.4;
   }
 
   .section {
@@ -323,6 +343,15 @@ body {
 
   .section-title {
     font-size: 30px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .card {
+    padding: 25px;
   }
 
   .button {
@@ -334,6 +363,43 @@ body {
 
   .hero .button + .button {
     margin-left: 0 !important;
+  }
+
+  .footer {
+    padding: 40px 0 20px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 20px;
+  }
+
+  .hero-title {
+    font-size: 32px;
+  }
+
+  .hero-subtitle {
+    font-size: 18px;
+  }
+
+  .section-title {
+    font-size: 26px;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .feature-list li {
+    padding-left: 20px;
+    margin-bottom: 10px;
+    font-size: 15px;
   }
 }
 
