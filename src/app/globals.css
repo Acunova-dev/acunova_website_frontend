@@ -365,5 +365,6 @@ a {
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
+    color: var(--foreground);
   }
 }
