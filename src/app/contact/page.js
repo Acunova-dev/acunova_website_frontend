@@ -1,7 +1,61 @@
+'use client';
+import { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { LocationIcon, PhoneIcon, EmailIcon, ClockIcon } from '../components/Icons';
+
+// Initialize EmailJS with your public key
+emailjs.init("9jq26ie2IjX7PsqlR"); // Sign up at emailjs.com to get this
 
 export default function Contact() {
+  const [formStatus, setFormStatus] = useState({
+    submitting: false,
+    submitted: false,
+    error: null
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setFormStatus({ submitting: true, submitted: false, error: null });
+
+    const templateParams = {
+      from_name: e.target.name.value,
+      from_email: e.target.email.value,
+      phone: e.target.phone.value,
+      subject: e.target.subject.value,
+      message: e.target.message.value,
+      to_email: 'acunovapvtltd@gmail.com'
+    };
+
+    try {
+      await emailjs.send(
+        'service_xyxqjm1', // Get this from EmailJS dashboard
+        'template_4wyvjsg', // Get this from EmailJS dashboard
+        templateParams
+      );
+
+      const data = await response.json();
+
+      if (data.success) {
+        setFormStatus({
+          submitting: false,
+          submitted: true,
+          error: null
+        });
+        e.target.reset();
+      } else {
+        throw new Error(data.message);
+      }
+    } catch (error) {
+      setFormStatus({
+        submitting: false,
+        submitted: false,
+        error: error.message || 'Failed to send message. Please try again.'
+      });
+    }
+  };
+
   return (
     <>
       <Header />
@@ -9,119 +63,131 @@ export default function Contact() {
         <section className="hero">
           <div className="container hero-content">
             <h1 className="hero-title">Contact Us</h1>
-            <p className="hero-subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+            <p className="hero-subtitle">Get in touch with our team for any inquiries or collaboration opportunities</p>
           </div>
         </section>
 
         <section className="section">
           <div className="container">
-            <div className="grid" style={{ gridTemplateColumns: '1fr 1fr', gap: '60px' }}>
+            <div className="contact-grid">
               <div>
                 <h2 className="section-title" style={{ textAlign: 'left' }}>Send Us a Message</h2>
-                <form id="contactForm" style={{ display: 'grid', gap: '20px' }}>
-                  <div>
-                    <label htmlFor="name" style={{ display: 'block', marginBottom: '8px' }}>Name *</label>
+                <form className="contact-form" onSubmit={handleSubmit}>
+                  {formStatus.submitted && (
+                    <div className="form-message success">
+                      Thank you for your message. We will get back to you soon!
+                    </div>
+                  )}
+                  {formStatus.error && (
+                    <div className="form-message error">
+                      {formStatus.error}
+                    </div>
+                  )}
+                  <div className="form-group">
+                    <label htmlFor="name" className="form-label">Name *</label>
                     <input
                       type="text"
                       id="name"
                       name="name"
                       required
-                      placeholder="Lorem Ipsum"
-                      style={{
-                        width: '100%',
-                        padding: '12px',
-                        border: '1px solid var(--medium-gray)',
-                        borderRadius: '4px'
-                      }}
+                      className="form-input"
+                      placeholder="Enter your full name"
+                      disabled={formStatus.submitting}
                     />
                   </div>
 
-                  <div>
-                    <label htmlFor="email" style={{ display: 'block', marginBottom: '8px' }}>Email *</label>
+                  <div className="form-group">
+                    <label htmlFor="email" className="form-label">Email *</label>
                     <input
                       type="email"
                       id="email"
                       name="email"
                       required
-                      placeholder="lorem@ipsum.com"
-                      style={{
-                        width: '100%',
-                        padding: '12px',
-                        border: '1px solid var(--medium-gray)',
-                        borderRadius: '4px'
-                      }}
+                      className="form-input"
+                      placeholder="Enter your email address"
+                      disabled={formStatus.submitting}
                     />
                   </div>
 
-                  <div>
-                    <label htmlFor="company" style={{ display: 'block', marginBottom: '8px' }}>Company</label>
+                  <div className="form-group">
+                    <label htmlFor="phone" className="form-label">Phone</label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      className="form-input"
+                      placeholder="Enter your phone number"
+                      disabled={formStatus.submitting}
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="subject" className="form-label">Subject *</label>
                     <input
                       type="text"
-                      id="company"
-                      name="company"
-                      placeholder="Lorem Company Ltd."
-                      style={{
-                        width: '100%',
-                        padding: '12px',
-                        border: '1px solid var(--medium-gray)',
-                        borderRadius: '4px'
-                      }}
+                      id="subject"
+                      name="subject"
+                      required
+                      className="form-input"
+                      placeholder="What is your message about?"
+                      disabled={formStatus.submitting}
                     />
                   </div>
 
-                  <div>
-                    <label htmlFor="message" style={{ display: 'block', marginBottom: '8px' }}>Message *</label>
+                  <div className="form-group">
+                    <label htmlFor="message" className="form-label">Message *</label>
                     <textarea
                       id="message"
                       name="message"
                       required
-                      placeholder="Lorem ipsum dolor sit amet..."
-                      rows="5"
-                      style={{
-                        width: '100%',
-                        padding: '12px',
-                        border: '1px solid var(--medium-gray)',
-                        borderRadius: '4px',
-                        resize: 'vertical'
-                      }}
+                      className="form-textarea"
+                      placeholder="Write your message here..."
+                      disabled={formStatus.submitting}
                     ></textarea>
                   </div>
 
-                  <button
-                    type="submit"
-                    className="button"
-                    style={{ width: 'fit-content' }}
+                  <button 
+                    type="submit" 
+                    className="button primary"
+                    disabled={formStatus.submitting}
                   >
                     Send Message
                   </button>
                 </form>
               </div>
 
-              <div>
-                <h2 className="section-title" style={{ textAlign: 'left' }}>Contact Information</h2>
-                <div className="card">
-                  <h3>Office Location</h3>
-                  <p style={{ marginBottom: '20px' }}>
-                    123 Lorem Street<br />
-                    Ipsum District<br />
-                    Dolor City, ST 12345<br />
-                    Consectetur
-                  </p>
-
-                  <h3>Contact Details</h3>
-                  <p style={{ marginBottom: '10px' }}>
-                    Phone: <a href="tel:+1234567890" style={{ color: 'var(--primary-color)' }}>+1 (234) 567-890</a>
-                  </p>
-                  <p style={{ marginBottom: '20px' }}>
-                    Email: <a href="mailto:info@lorem.com" style={{ color: 'var(--primary-color)' }}>info@lorem.com</a>
-                  </p>
-
-                  <h3>Business Hours</h3>
-                  <p>
-                    Monday - Friday: 9:00 AM - 6:00 PM<br />
-                    Saturday - Sunday: Closed
-                  </p>
-                </div>
+              <div className="contact-info">
+                <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '20px' }}>Contact Information</h2>
+                <ul className="contact-info-list">
+                  <li className="contact-info-item">
+                    <span className="contact-icon"><LocationIcon /></span>
+                    <div>
+                      <strong>Address</strong>
+                      <p>123 Innovation Drive<br />Tech Valley, CA 94025</p>
+                    </div>
+                  </li>
+                  <li className="contact-info-item">
+                    <span className="contact-icon"><PhoneIcon /></span>
+                    <div>
+                      <strong>Phone</strong>
+                      <p>+1 (555) 123-4567</p>
+                    </div>
+                  </li>
+                  <li className="contact-info-item">
+                    <span className="contact-icon"><EmailIcon /></span>
+                    <div>
+                      <strong>Email</strong>
+                      <p>acunovapvtltd@gmail.com</p>
+                    </div>
+                  </li>
+                  <li className="contact-info-item">
+                    <span className="contact-icon"><ClockIcon /></span>
+                    <div>
+                      <strong>Business Hours</strong>
+                      <p>Monday - Friday<br />9:00 AM - 6:00 PM PST</p>
+                    </div>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
