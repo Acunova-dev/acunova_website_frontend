@@ -27,7 +27,7 @@ export default function Footer() {
             <h3 className="footer-title">Contact</h3>
             <ul className="footer-links">
               <li><a href="tel:+1234567890" className="footer-link">+1 (234) 567-890</a></li>
-              <li><a href="mailto:info@Acunova.com" className="footer-link">info@Acunova.com</a></li>
+              <li><a href="mailto:acunovapvtltd@gmail.com" className="footer-link">acunovapvtltd@gmail.com</a></li>
             </ul>
           </div>
         </div>

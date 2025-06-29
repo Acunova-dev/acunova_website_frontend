@@ -422,9 +422,17 @@ body {
 }
 
 .form-label {
-  color: var(--text-color);
-  font-weight: 500;
-  font-size: 16px;
+color: #fff;
+font-weight: 500;
+font-size: 16px;
+display: flex;
+align-items: center;
+}
+.form-label .required-star {
+  color: #ff3333;
+  margin-left: 4px;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .form-input,

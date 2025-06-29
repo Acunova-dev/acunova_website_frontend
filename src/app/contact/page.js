@@ -104,7 +104,7 @@ export default function Contact() {
                     </div>
                   )}
                   <div className="form-group">
-                    <label htmlFor="name" className="form-label">Name *</label>
+                    <label htmlFor="name" className="form-label">Name <span className="required-star">*</span></label>
                     <input
                       type="text"
                       id="name"
@@ -119,7 +119,7 @@ export default function Contact() {
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="email" className="form-label">Email *</label>
+                    <label htmlFor="email" className="form-label">Email <span className="required-star">*</span></label>
                     <input
                       type="email"
                       id="email"
@@ -148,7 +148,7 @@ export default function Contact() {
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="subject" className="form-label">Subject *</label>
+                    <label htmlFor="subject" className="form-label">Subject <span className="required-star">*</span></label>
                     <input
                       type="text"
                       id="subject"
@@ -163,7 +163,7 @@ export default function Contact() {
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="message" className="form-label">Message *</label>
+                    <label htmlFor="message" className="form-label">Message <span className="required-star">*</span></label>
                     <textarea
                       id="message"
                       name="message"
@@ -193,14 +193,15 @@ export default function Contact() {
                     <span className="contact-icon"><LocationIcon /></span>
                     <div>
                       <strong>Address</strong>
-                      <p>123 Innovation Drive<br />Tech Valley, CA 94025</p>
+                      <p>Bulawayo<br />Zimbabwe</p>
                     </div>
                   </li>
                   <li className="contact-info-item">
                     <span className="contact-icon"><PhoneIcon /></span>
                     <div>
                       <strong>Phone</strong>
-                      <p>+1 (555) 123-4567</p>
+                      <p>+263 77 493 8581</p>
+                      <p>+263 78 385 7780</p>
                     </div>
                   </li>
                   <li className="contact-info-item">
@@ -214,7 +215,7 @@ export default function Contact() {
                     <span className="contact-icon"><ClockIcon /></span>
                     <div>
                       <strong>Business Hours</strong>
-                      <p>Monday - Friday<br />9:00 AM - 6:00 PM PST</p>
+                      <p>Monday - Friday<br />9:00 AM - 6:00 PM CAT</p>
                     </div>
                   </li>
                 </ul>
