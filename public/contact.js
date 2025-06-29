@@ -12,9 +12,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 data[key] = value;
             });
 
-            // For demo purposes, just show an alert
-            alert('Thank you for your message! We will get back to you soon.');
-            contactForm.reset();
 
             // In a real implementation, you would send this data to your server
             // fetch('/api/contact', {

@@ -9,43 +9,63 @@ import { LocationIcon, PhoneIcon, EmailIcon, ClockIcon } from '../components/Ico
 emailjs.init("9jq26ie2IjX7PsqlR"); // Sign up at emailjs.com to get this
 
 export default function Contact() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: ''
+  });
+
   const [formStatus, setFormStatus] = useState({
     submitting: false,
     submitted: false,
     error: null
   });
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setFormStatus({ submitting: true, submitted: false, error: null });
 
     const templateParams = {
-      from_name: e.target.name.value,
-      from_email: e.target.email.value,
-      phone: e.target.phone.value,
-      subject: e.target.subject.value,
-      message: e.target.message.value,
+      from_name: formData.name,
+      from_email: formData.email,
+      phone: formData.phone,
+      subject: formData.subject,
+      message: formData.message,
       to_email: 'acunovapvtltd@gmail.com'
     };
 
     try {
-      await emailjs.send(
-        'service_xyxqjm1', // Get this from EmailJS dashboard
-        'template_4wyvjsg', // Get this from EmailJS dashboard
+      const result = await emailjs.send(
+        'service_xyxqjm1',
+        'template_4wyvjsg',
         templateParams
       );
 
-      const data = await response.json();
-
-      if (data.success) {
+      if (result.status === 200) {
         setFormStatus({
           submitting: false,
           submitted: true,
           error: null
         });
-        e.target.reset();
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          subject: '',
+          message: ''
+        });
       } else {
-        throw new Error(data.message);
+        throw new Error('Failed to send message. Please try again.');
       }
     } catch (error) {
       setFormStatus({
@@ -89,6 +109,8 @@ export default function Contact() {
                       type="text"
                       id="name"
                       name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
                       required
                       className="form-input"
                       placeholder="Enter your full name"
@@ -102,6 +124,8 @@ export default function Contact() {
                       type="email"
                       id="email"
                       name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
                       required
                       className="form-input"
                       placeholder="Enter your email address"
@@ -115,6 +139,8 @@ export default function Contact() {
                       type="tel"
                       id="phone"
                       name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
                       className="form-input"
                       placeholder="Enter your phone number"
                       disabled={formStatus.submitting}
@@ -127,6 +153,8 @@ export default function Contact() {
                       type="text"
                       id="subject"
                       name="subject"
+                      value={formData.subject}
+                      onChange={handleInputChange}
                       required
                       className="form-input"
                       placeholder="What is your message about?"
@@ -139,6 +167,8 @@ export default function Contact() {
                     <textarea
                       id="message"
                       name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
                       required
                       className="form-textarea"
                       placeholder="Write your message here..."

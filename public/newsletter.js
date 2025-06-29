@@ -9,8 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const email = emailInput.value;
 
             // For demo purposes, just show an alert
-            alert('Thank you for subscribing! You will receive our newsletter at: ' + email);
-            newsletterForm.reset();
+            
 
             // In a real implementation, you would send this to your server
             // fetch('/api/subscribe', {
